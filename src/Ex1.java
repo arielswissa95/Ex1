@@ -10,6 +10,9 @@
  * “b2”, “0b1”, “123b”, “1234b11”, “3b3”, “-3b5”, “3 b4”, “GbG”, "", null,
  * You should implement the following static functions:
  */
+
+import java.util.Arrays;
+
 public class Ex1 {
         /**
          * Convert the given number (num) to a decimal representation (as int).
@@ -32,12 +35,51 @@ public class Ex1 {
         public static boolean isNumber(String a) {
             boolean ans = true;
             // add your code here
+           char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
+          String [] arr=a.split("b");// מערך של החלק לפני B ואחרי
+
+            int value, base ;
+
 
             if(a==null)
                 ans=false;
+
+            else if (arr[0]=="") { // בודק אם קיים ערך
+                ans=false;
+            }
+            else if (arr.length!=2 ) { //בודק אם קיים  בסיס
+              ans=false;
+           }
+            else if (Arrays.asList(arr1).contains(" ")) { //בודק אם קיים רווח בקלט
+                ans=false;
+            }
            // else if () {
-                
+
             //}
+
+            int number;
+             try{ // בודק אם הבסיס גדול מ9 או קטן מ2
+                 number = Integer.parseInt(arr[1]);
+                 if (number>9 || number<2 )
+                     ans=false;
+
+                }catch (NumberFormatException e) {
+                // טיפול במקרה שבו המיתר לא ניתן להמרה לאינט
+                //System.out.println("המיתר אינו מכיל מספר חוקי");
+            }
+            try{ // בודק אם המספר שלילי
+                number = Integer.parseInt(arr[0]);
+                if ( number<0 )
+                    ans=false;
+
+            }catch (NumberFormatException e) {
+                // טיפול במקרה שבו המיתר לא ניתן להמרה לאינט
+                //System.out.println("המיתר אינו מכיל מספר חוקי");
+            }
+
+
+
+
             ////////////////////
             return ans;
         }
