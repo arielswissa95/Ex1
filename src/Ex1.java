@@ -22,60 +22,110 @@ public class Ex1 {
          */
         public static int number2Int(String num) {
             int ans = -1;
+            if(!isNumber(num)) // בודק אם הוא לא חוקי
+                return ans;
+
+
             // add your code here
 
             ////////////////////
             return ans;
+        }
+
+
+
+
+        public static boolean isExist(String a,String[] arr){
+            boolean b=false;
+            for(int i=0;i<arr.length;i++){
+                if(arr[i]==a)
+                    return true;
+            }
+            return b;
         }
         /**
          * This static function checks if the given String (g) is in a valid "number" format.
          * @param a a String representing a number
          * @return true iff the given String is in a number format
          */
+
+
+// לתקן הFOR לא עובד
         public static boolean isNumber(String a) {
             boolean ans = true;
-            // add your code here
-           char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
-          String [] arr=a.split("b");// מערך של החלק לפני B ואחרי
-
-            int value, base ;
-
-
             if(a==null)
-                ans=false;
+                return false;
+            else if (a=="") {
+                return false;
+            }
+            char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
+            String [] arr=a.split("b");//// מערך של החלק לפני B ואחרי
 
-            else if (arr[0]=="") { // בודק אם קיים ערך
-                ans=false;
+
+             if (arr[0]=="") { // בודק אם קיים ערך
+                return false;
             }
             else if (arr.length!=2 ) { //בודק אם קיים  בסיס
-              ans=false;
-           }
-            else if (Arrays.asList(arr1).contains(" ")) { //בודק אם קיים רווח בקלט
-                ans=false;
+                return false;
             }
-           // else if () {
+            else if (Arrays.asList(arr1).contains(" ")) { //בודק אם קיים רווח בקלט
+                return false;
+            }
+            else if (arr[0]==arr[1]) {
+                return false;
+            }
+
+            // לסיים בדיקה אם הבסיס קטן מהערך
+
+           // String [] w={"A","B","C","D","E","F","G"};
+
+          //  else if () {
+
+         //   }
+            // else if () {
 
             //}
 
-            int number;
-             try{ // בודק אם הבסיס גדול מ9 או קטן מ2
-                 number = Integer.parseInt(arr[1]);
-                 if (number>9 || number<2 )
-                     ans=false;
+       //     int number;
+         //   try{ // בודק אם הבסיס גדול מ9 או קטן מ2
+           //     number = Integer.parseInt(arr[1]);
+             //   if (number>9 || number<2 )
+               //     ans=false;
 
-                }catch (NumberFormatException e) {
+            //}catch (NumberFormatException e) {
                 // טיפול במקרה שבו המיתר לא ניתן להמרה לאינט
                 //System.out.println("המיתר אינו מכיל מספר חוקי");
-            }
-            try{ // בודק אם המספר שלילי
-                number = Integer.parseInt(arr[0]);
-                if ( number<0 )
-                    ans=false;
+            //}
+            //  try{ // בודק אם המספר שלילי
+              //  number = Integer.parseInt(arr[0]);
+                //if ( number<0 )
+                  //  ans=false;
 
-            }catch (NumberFormatException e) {
+            //}catch (NumberFormatException e) {
                 // טיפול במקרה שבו המיתר לא ניתן להמרה לאינט
                 //System.out.println("המיתר אינו מכיל מספר חוקי");
+            //}
+
+            String[] existForValue={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"};
+            String[] existForBase={"2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"};
+
+            // בודק אם כל האינדקסים שקיימים הם המספרים והאותיות שמותר לנו להשתמש בהם
+
+            for (int i=0;i<arr[0].length();i++){
+               char c=arr[0].charAt(i);
+               String s=c+"";
+               if (!isExist(s,existForValue))
+                   return false; //b=false
             }
+
+            for (int i=0;i<arr[1].length();i++){
+
+                char c=arr[1].charAt(i);
+                String s=c+"";
+                if (!isExist(s,existForBase))
+                    return false; //b=false
+            }
+
 
 
 

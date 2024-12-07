@@ -20,6 +20,25 @@ public class Ex1Test {
             assertTrue(Ex1.equals(s10,s2));
         }
 
+        //i add
+    //“b2”, “0b1”, “123b”, “1234b11”, “3b3”, “-3b5”, “3 b4”, “GbG”, “”, null
+
+        @Test
+        public void testIsNumber(){
+
+           assertFalse(Ex1.isNumber("b2"));
+            assertFalse(Ex1.isNumber("0b1"));
+            assertFalse(Ex1.isNumber("123b"));
+            assertFalse(Ex1.isNumber("1234b11"));
+            assertFalse(Ex1.isNumber("3b3"));
+            assertFalse(Ex1.isNumber("-3b5"));
+            assertFalse(Ex1.isNumber("3 b4"));
+            assertFalse(Ex1.isNumber("GbG"));
+            assertFalse(Ex1.isNumber(null));
+            assertFalse(Ex1.isNumber(""));
+
+        }
+
         @Test
         void isBasisNumberTest() {
             String[] good = {"1", "1b2", "01b2", "123bA", "ABbG", "0bA"};
@@ -35,6 +54,7 @@ public class Ex1Test {
         }
         @Test
         void int2NumberTest() {
+
            // implement this test
         }
         @Test
