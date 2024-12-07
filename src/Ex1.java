@@ -35,13 +35,22 @@ public class Ex1 {
 
 
 //פעולת עזר שמקבלת מערך ומשתנה ובודקת אם המשתנה קיים במערך
-        public static boolean isExist(String a,String[] arr){
+        public static boolean isExist(char a,char[] arr){
             boolean b=false;
             for(int i=0;i<arr.length;i++){
                 if(arr[i]==a)
                     return true;
             }
             return b;
+        }
+        //פעולה שצחזירה את האינדקס במערך שנמצא בא המשתנה אחרת תחזיר -1
+        public static int index(char c,char[]arr){
+            int r=-1;
+            for(int i=0;i<arr.length;i++){
+                if(arr[i]==c)
+                    return i;
+            }
+            return r;
         }
         /**
          * This static function checks if the given String (g) is in a valid "number" format.
@@ -50,7 +59,6 @@ public class Ex1 {
          */
 
 
-// לתקן הFOR לא עובד
         public static boolean isNumber(String a) {
             boolean ans = true;
             if(a==null)
@@ -74,57 +82,49 @@ public class Ex1 {
             else if (arr[0]==arr[1]) {
                 return false;
             }
+            else if (arr[1].length()!=1) {
+                return false;
 
-            // לסיים בדיקה אם הבסיס קטן מהערך
+             }
 
-           // String [] w={"A","B","C","D","E","F","G"};
 
-          //  else if () {
 
-         //   }
-            // else if () {
 
-            //}
-
-       //     int number;
-         //   try{ // בודק אם הבסיס גדול מ9 או קטן מ2
-           //     number = Integer.parseInt(arr[1]);
-             //   if (number>9 || number<2 )
-               //     ans=false;
-
-            //}catch (NumberFormatException e) {
-                // טיפול במקרה שבו המיתר לא ניתן להמרה לאינט
-                //System.out.println("המיתר אינו מכיל מספר חוקי");
-            //}
-            //  try{ // בודק אם המספר שלילי
-              //  number = Integer.parseInt(arr[0]);
-                //if ( number<0 )
-                  //  ans=false;
-
-            //}catch (NumberFormatException e) {
-                // טיפול במקרה שבו המיתר לא ניתן להמרה לאינט
-                //System.out.println("המיתר אינו מכיל מספר חוקי");
-            //}
-
-            String[] existForValue={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"};
-            String[] existForBase={"2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"};
+            char[] existForValue={'1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
+            char[] existForBase={'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
 
             // בודק אם כל האינדקסים שקיימים הם המספרים והאותיות שמותר לנו להשתמש בהם
 
             for (int i=0;i<arr[0].length();i++){
                char c=arr[0].charAt(i);
-               String s=c+"";
-               if (!isExist(s,existForValue))
+
+               if (!isExist(c,existForValue))
                    return false; //b=false
             }
 
             for (int i=0;i<arr[1].length();i++){
 
                 char c=arr[1].charAt(i);
-                String s=c+"";
-                if (!isExist(s,existForBase))
+                if (!isExist(c,existForBase))
                     return false; //b=false
             }
+
+
+            char [] valurChar=arr[0].toCharArray();
+            char base=arr[1].charAt(0);// מתוך הנחה שיש בבסיס רק איבר 1 בדקתי את זה
+            if(isExist(base,valurChar)) // בודק אם קיים הבסיס בערך
+                return false;
+
+            int baseIndex=index(base,existForBase);
+            int baseValue;
+            for(int i=0;i<arr[0].length();i++){
+                baseValue=index(arr[0].charAt(i),existForValue);
+                if(baseValue>baseIndex) //בודק אם יש בערך(מספר) ערך יותר גדול מהבסיס
+                    return false;
+            }
+
+
+
 
 
 
