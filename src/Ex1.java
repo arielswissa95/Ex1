@@ -34,7 +34,7 @@ public class Ex1 {
 
 
 
-
+//פעולת עזר שמקבלת מערך ומשתנה ובודקת אם המשתנה קיים במערך
         public static boolean isExist(String a,String[] arr){
             boolean b=false;
             for(int i=0;i<arr.length;i++){

@@ -25,7 +25,6 @@ public class Ex1Test {
 
         @Test
         public void testIsNumber(){
-
            assertFalse(Ex1.isNumber("b2"));
             assertFalse(Ex1.isNumber("0b1"));
             assertFalse(Ex1.isNumber("123b"));
