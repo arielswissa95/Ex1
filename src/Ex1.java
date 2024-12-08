@@ -14,16 +14,35 @@
 import java.util.Arrays;
 
 public class Ex1 {
+// פעולה שמקבלת את הבסיס ואומרת מה הוא בINT
+    public static int WhatTheBase(String a){
+        char c=a.charAt(0);
+
+        char [] arr={'A','B','C','D','E','F','G'};
+        for(int i=0;i<arr.length;i++){
+            if(c==arr[i])
+                return i+10;
+        }
+        return  Integer.parseInt(a);
+    }
         /**
          * Convert the given number (num) to a decimal representation (as int).
          * It the given number is not in a valid format returns -1.
          * @param num a String representing a number in basis [2,16]
          * @return
          */
+
         public static int number2Int(String num) {
             int ans = -1;
             if(!isNumber(num)) // בודק אם הוא לא חוקי
                 return ans;
+
+            String [] arr=num.split("b");//// מערך של החלק לפני B ואחרי
+            int base;
+
+
+             base= WhatTheBase(arr[1]);
+           ans= Integer.parseInt(arr[0],base);
 
 
             // add your code here
@@ -66,6 +85,10 @@ public class Ex1 {
             else if (a=="") {
                 return false;
             }
+            if (!a.contains(String.valueOf('b'))) {
+                a=a+"bA";
+
+            }
             char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
             String [] arr=a.split("b");//// מערך של החלק לפני B ואחרי
 
@@ -90,7 +113,7 @@ public class Ex1 {
 
 
 
-            char[] existForValue={'1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
+            char[] existForValue={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
             char[] existForBase={'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
 
             // בודק אם כל האינדקסים שקיימים הם המספרים והאותיות שמותר לנו להשתמש בהם
@@ -115,7 +138,7 @@ public class Ex1 {
             if(isExist(base,valurChar)) // בודק אם קיים הבסיס בערך
                 return false;
 
-            int baseIndex=index(base,existForBase);
+            int baseIndex=index(base,existForValue);
             int baseValue;
             for(int i=0;i<arr[0].length();i++){
                 baseValue=index(arr[0].charAt(i),existForValue);
@@ -145,7 +168,10 @@ public class Ex1 {
         public static String int2Number(int num, int base) {
             String ans = "";
             // add your code here
-
+            if(num<0|| base<2||base>16)
+                return ans;
+           String a= Integer.toString(num, base) ;
+           ans=a+"b"+base;
             ////////////////////
             return ans;
         }
@@ -159,6 +185,11 @@ public class Ex1 {
         public static boolean equals(String n1, String n2) {
             boolean ans = true;
             // add your code here
+            int a=number2Int(n1);
+            int b=number2Int(n2);
+
+            if(a!=b)
+                return false;
 
             ////////////////////
             return ans;
@@ -175,7 +206,10 @@ public class Ex1 {
         public static int maxIndex(String[] arr) {
             int ans = 0;
             // add your code here
-
+            for(int i=0;i<arr.length;i++){
+                if(ans<number2Int(arr[i]))
+                    ans=number2Int(arr[i]);
+            }
             ////////////////////
             return ans;
         }
