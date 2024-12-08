@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -7,6 +8,7 @@ import java.util.Scanner;
  */
 public class Ex1Main {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String num1 = "", num2="", quit = "quit";
         while (!num1.equals(quit) && !num2.equals(quit)) {
@@ -16,6 +18,17 @@ public class Ex1Main {
             num1 = sc.next();
             if (!num1.equals("quit")) {
                 // add your code here
+                int v=Ex1.number2Int(num1);
+                if(!Ex1.isNumber(num1)){
+                    System.out.println("num1= "+num1+" is number: False , value: "+v);
+                    System.out.println("ERR: num1 is in the wrong format! ("+num1+")");
+
+                }
+
+                else {
+                System.out.println("num1= "+num1+" is number: True , value: "+v);
+                }
+
 
                 /////////////////////
             }
