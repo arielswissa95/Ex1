@@ -11,19 +11,22 @@
  * You should implement the following static functions:
  */
 
+import javax.management.StringValueExp;
 import java.util.Arrays;
 
 public class Ex1 {
+    static String numb;
 // פעולה שמקבלת את הבסיס ואומרת מה הוא בINT
+    //אם הבסיס לא חוקי הוא יחזיר -1
     public static int WhatTheBase(String a){
         char c=a.charAt(0);
 
-        char [] arr={'A','B','C','D','E','F','G'};
+        char [] arr={'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
         for(int i=0;i<arr.length;i++){
             if(c==arr[i])
-                return i+10;
+                return i+2;
         }
-        return  Integer.parseInt(a);
+        return  -1;
     }
         /**
          * Convert the given number (num) to a decimal representation (as int).
@@ -34,9 +37,10 @@ public class Ex1 {
 
         public static int number2Int(String num) {
             int ans = -1;
+            numb=num;
             if(!isNumber(num)) // בודק אם הוא לא חוקי
                 return ans;
-
+            num=numb;//אם הוא עודכן בISNUMBER אז אני משנה אותו
             String [] arr=num.split("b");//// מערך של החלק לפני B ואחרי
             int base;
 
@@ -87,11 +91,15 @@ public class Ex1 {
             }
             if (!a.contains(String.valueOf('b'))) {
                 a=a+"bA";
+                numb=a;
 
             }
+
             char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
             String [] arr=a.split("b");//// מערך של החלק לפני B ואחרי
-
+            if(String.valueOf(a) == "b"){
+                return false;
+            }
 
              if (arr[0]=="") { // בודק אם קיים ערך
                 return false;
@@ -157,6 +165,29 @@ public class Ex1 {
             return ans;
         }
 
+        //מקבלת בסיס והופכת אותו לאות אם הוא גדול מ 9
+        public static String int2StringBase(int a){
+        if(a==10)
+            return "A";
+        else if (a==11) {
+            return "B";
+
+        } else if (a==12) {
+            return "C";
+        } else if (a==13) {
+            return "D";
+
+        } else if (a==14) {
+            return "E";
+        } else if (a==15) {
+            return "F";
+        }
+        else if(a==16){
+            return "G";
+        }
+        return String.valueOf(a);
+        }
+
         /**
          * Calculate the number representation (in basis base)
          * of the given natural number (represented as an integer).
@@ -170,11 +201,38 @@ public class Ex1 {
             // add your code here
             if(num<0|| base<2||base>16)
                 return ans;
-           String a= Integer.toString(num, base) ;
-           ans=a+"b"+base;
+           String a= Integer.toString(num, base).toUpperCase() ;//אם זה אות הופך אותה לאות גדולה
+
+           ans=a+"b"+int2StringBase(base);
             ////////////////////
             return ans;
         }
+
+    /**
+     * This static function search for the array index with the largest number (in value).
+     * In case there are more than one maximum - returns the first index.
+     * Note: you can assume that the array is not null and is not empty, yet it may contain null or none-valid numbers (with value -1).
+     * @param arr an array of numbers
+     * @return the index in the array in with the largest number (in value).
+     *
+     */
+    public static int maxIndex(String[] arr) {
+        int ans = 0;
+        int index=-1;
+        // add your code here
+        for(int i=0;i<arr.length;i++){
+
+            if(isNumber(arr[i])){
+                if(ans<number2Int(arr[i])){
+                    ans=number2Int(arr[i]);
+                    index=i;
+                }
+            }
+
+        }
+        ////////////////////
+        return index;
+    }
 
         /**
          * Checks if the two numbers have the same value.
@@ -195,22 +253,5 @@ public class Ex1 {
             return ans;
         }
 
-        /**
-         * This static function search for the array index with the largest number (in value).
-         * In case there are more than one maximum - returns the first index.
-         * Note: you can assume that the array is not null and is not empty, yet it may contain null or none-valid numbers (with value -1).
-         * @param arr an array of numbers
-         * @return the index in the array in with the largest number (in value).
-         *
-         */
-        public static int maxIndex(String[] arr) {
-            int ans = 0;
-            // add your code here
-            for(int i=0;i<arr.length;i++){
-                if(ans<number2Int(arr[i]))
-                    ans=number2Int(arr[i]);
-            }
-            ////////////////////
-            return ans;
-        }
+
 }
