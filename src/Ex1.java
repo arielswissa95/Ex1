@@ -18,10 +18,13 @@ public class Ex1 {
     static String numb;
 // פעולה שמקבלת את הבסיס ואומרת מה הוא בINT
     //אם הבסיס לא חוקי הוא יחזיר -1
+
+    //
     public static int WhatTheBase(String a){
         char c=a.charAt(0);
 
         char [] arr={'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
+
         for(int i=0;i<arr.length;i++){
             if(c==arr[i])
                 return i+2;
@@ -66,6 +69,7 @@ public class Ex1 {
             }
             return b;
         }
+
         //פעולה שצחזירה את האינדקס במערך שנמצא בא המשתנה אחרת תחזיר -1
         public static int index(char c,char[]arr){
             int r=-1;
@@ -97,7 +101,8 @@ public class Ex1 {
 
             char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
             String [] arr=a.split("b");//// מערך של החלק לפני B ואחרי
-            if(String.valueOf(a) == "b"){
+
+            if(a.equals("b")){
                 return false;
             }
 
@@ -153,15 +158,6 @@ public class Ex1 {
                 if(baseValue>baseIndex) //בודק אם יש בערך(מספר) ערך יותר גדול מהבסיס
                     return false;
             }
-
-
-
-
-
-
-
-
-            ////////////////////
             return ans;
         }
 
@@ -242,14 +238,15 @@ public class Ex1 {
          */
         public static boolean equals(String n1, String n2) {
             boolean ans = true;
-            // add your code here
             int a=number2Int(n1);
             int b=number2Int(n2);
+            if(a==-1 ||b==-1)
+                ans= false;
 
-            if(a!=b)
-                return false;
+            else if(a!=b)
+                ans= false;
 
-            ////////////////////
+
             return ans;
         }
 
