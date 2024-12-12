@@ -155,11 +155,8 @@ public class Ex1 {
                     return false;
             }
 
-            //לבדוק אם אפשר למחוק
-            //char [] valurChar=arr[0].toCharArray();
+
             char base=arr[1].charAt(0);// Assuming that there is only one element in the base
-            //if(isExist(base,valurChar)) // בודק אם קיים הבסיס בערך
-              //  return false;
 
             int baseIndex=index(base,existForValue);// Returns the index of the base
             int valueIndex;

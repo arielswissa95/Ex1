@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Ex1Main {
     public static void main(String[] args) {
 
-        //לתקן
 
         Scanner sc = new Scanner(System.in);
         String num1 = "", num2="", quit = "quit";
