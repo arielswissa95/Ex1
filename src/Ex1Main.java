@@ -26,7 +26,7 @@ public class Ex1Main {
                 if(!Ex1.isNumber(num1)){
                     System.out.println("num1= "+num1+" is number: False , value: "+v);
                     System.out.println("ERR: num1 is in the wrong format! ("+num1+")");
-                    continue;// מדלג על שאר  קוד
+                    continue;
 
                 }
 
@@ -60,35 +60,29 @@ public class Ex1Main {
             System.out.println("Enter a base for output: (a number [2,16]");
             String base=sc.next();
 
-          //  int integetBase=Ex1.WhatTheBase(base);
-            //לבדוק אם אפשר לקבל בסיס אות
-            //if(integetBase>9)
-              //  base=String.valueOf(integetBase) ;
 
-            //integetBase!=-1 &&
             int baseInt=Integer.parseInt(base);
-            if( baseInt<17 && baseInt>1){ // בודק אם הבסיס תקין
-                int numBase1=Ex1.number2Int(num1);//NUM1 בבסיס10
-                int numBase2=Ex1.number2Int(num2);//NUM2 בבסיס 10
-                int sum = numBase2 + numBase1;//חיבור
-                int Multiplication = numBase2*numBase1;//כפל
+            if( baseInt<17 && baseInt>1){ // Checks if the base is correct
+                int numBase1=Ex1.number2Int(num1);
+                int numBase2=Ex1.number2Int(num2);
+                int sum = numBase2 + numBase1;
+                int Multiplication = numBase2*numBase1;
 
                 String sumBase;
                 String multiplicationBase;
 
-                if (baseInt != 10) {
-                     sumBase= Ex1.int2Number(sum,baseInt);
-                     multiplicationBase=Ex1.int2Number(Multiplication,baseInt);
+                if (baseInt != 10) {//If the base is not 10
+                     sumBase= Ex1.int2Number(sum,baseInt);//Converts the "sum" to the desired base.
+                     multiplicationBase=Ex1.int2Number(Multiplication,baseInt);//Converts the "Multiplication" to the desired base.
 
                 }
                 else {
-                    sumBase =String.valueOf(sum) ;
-                    multiplicationBase=String.valueOf(Multiplication) ;
+                    sumBase =String.valueOf(sum) ;//Converts "sum" to a string
+                    multiplicationBase=String.valueOf(Multiplication) ;//Converts "Multiplication" to a string
                 }
-                String[]arr1={num1,num2,sumBase ,multiplicationBase};
-                int max=Ex1.maxIndex(arr1);
+                String[]arr1={num1,num2,sumBase ,multiplicationBase};//Creates an array with the required values
+                int max=Ex1.maxIndex(arr1);//Inserts the index of the maximum of "arr1" into "max"
 
-              //  if()
 
                 System.out.println(num1+" + "+num2 +" = "+sumBase );
                 System.out.println(num1+" * "+num2 +" = "+multiplicationBase );

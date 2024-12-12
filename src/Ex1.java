@@ -16,18 +16,20 @@ import java.util.Arrays;
 
 public class Ex1 {
     static String numb;
-// פעולה שמקבלת את הבסיס ואומרת מה הוא בINT
-    //אם הבסיס לא חוקי הוא יחזיר -1
-
-    //
+  /**
+     * function that accepts a string that defines the base (2-9 OR A-G) and returns the base in an INTEGER,
+     * i.e: for string "1" the function returns 1 (int) for string "A" the function returns 10 (int). if the base in invalid return -1 (int)
+     * @param a
+     * @return int representation of a string.
+     */
     public static int WhatTheBase(String a){
         char c=a.charAt(0);
 
-        char [] arr={'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
+        char [] arr = {'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
 
-        for(int i=0;i<arr.length;i++){
+        for(int i = 0 ; i < arr.length ; i++){
             if(c==arr[i])
-                return i+2;
+                return i + 2;
         }
         return  -1;
     }
@@ -37,30 +39,30 @@ public class Ex1 {
          * @param num a String representing a number in basis [2,16]
          * @return
          */
-
         public static int number2Int(String num) {
             int ans = -1;
             numb=num;
-            if(!isNumber(num)) // בודק אם הוא לא חוקי
+            if(!isNumber(num)) // Checks if it is in a valid format
                 return ans;
-            num=numb;//אם הוא עודכן בISNUMBER אז אני משנה אותו
-            String [] arr=num.split("b");//// מערך של החלק לפני B ואחרי
+            num=numb;//If "numb" was updated in "isNumber" then I update "num"
+            String [] arr=num.split("b");//Builds an array that divides the String by "b"
             int base;
 
+             base= WhatTheBase(arr[1]); //"base" gets the base in INT
+           ans= Integer.parseInt(arr[0],base); //"ans" gets "num" in base 10 by using the Integer.parseInt() function.
 
-             base= WhatTheBase(arr[1]);
-           ans= Integer.parseInt(arr[0],base);
-
-
-            // add your code here
-
-            ////////////////////
             return ans;
         }
 
 
 
-//פעולת עזר שמקבלת מערך ומשתנה ובודקת אם המשתנה קיים במערך
+
+    /**
+     *
+     * @param a is char that I want to check if is exists in the arr array
+     * @param arr is char array
+     * @return True if 'a' exists in arr and False otherwise
+     */
         public static boolean isExist(char a,char[] arr){
             boolean b=false;
             for(int i=0;i<arr.length;i++){
@@ -70,7 +72,13 @@ public class Ex1 {
             return b;
         }
 
-        //פעולה שצחזירה את האינדקס במערך שנמצא בא המשתנה אחרת תחזיר -1
+
+    /**
+     *
+     * @param c is the char that I want to find his index
+     * @param arr is char array that I check what the index of 'c' in arr
+     * @return the index of 'a' in arr if is not exist return -1 .
+     */
         public static int index(char c,char[]arr){
             int r=-1;
             for(int i=0;i<arr.length;i++){
@@ -79,40 +87,42 @@ public class Ex1 {
             }
             return r;
         }
+
+
         /**
          * This static function checks if the given String (g) is in a valid "number" format.
          * @param a a String representing a number
          * @return true iff the given String is in a number format
          */
-
-
         public static boolean isNumber(String a) {
             boolean ans = true;
+
             if(a==null)
                 return false;
             else if (a=="") {
                 return false;
             }
-            if (!a.contains(String.valueOf('b'))) {
+            if (!a.contains(String.valueOf('b'))) {//Checks if "b" exists in String "a".
                 a=a+"bA";
+
+                //Changes the value and adds "b"+ Base("A") to it to perform functions on it.
                 numb=a;
 
             }
 
-            char [] arr1=a.toCharArray();// הופך סטרינג למערך של צארים
-            String [] arr=a.split("b");//// מערך של החלק לפני B ואחרי
-
-            if(a.equals("b")){
+            char [] arr1=a.toCharArray();// Converts a String "a" to an array of Char
+            String [] arr=a.split("b");//Builds an array that divides the String by "b"
+            if(a.equals("b")){ //Checks if "b" exists in "a"
                 return false;
             }
 
-             if (arr[0]=="") { // בודק אם קיים ערך
+             if (arr[0]=="") {
                 return false;
             }
-            else if (arr.length!=2 ) { //בודק אם קיים  בסיס
+            else if (arr.length!=2 ) { //Checks if a base exists
                 return false;
             }
-            else if (Arrays.asList(arr1).contains(" ")) { //בודק אם קיים רווח בקלט
+            else if (Arrays.asList(arr1).contains(" ")) { //Checks if there is a space in the input.
                 return false;
             }
             else if (arr[0]==arr[1]) {
@@ -129,39 +139,44 @@ public class Ex1 {
             char[] existForValue={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
             char[] existForBase={'2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
 
-            // בודק אם כל האינדקסים שקיימים הם המספרים והאותיות שמותר לנו להשתמש בהם
+            // Checks if all existing indexes are numbers and letters allowed to be used according to the format
 
             for (int i=0;i<arr[0].length();i++){
                char c=arr[0].charAt(i);
 
-               if (!isExist(c,existForValue))
-                   return false; //b=false
+               if (!isExist(c,existForValue))//Checks if "c" exists in the "existForValue".
+                   return false;
             }
 
             for (int i=0;i<arr[1].length();i++){
-
                 char c=arr[1].charAt(i);
-                if (!isExist(c,existForBase))
-                    return false; //b=false
+
+                if (!isExist(c,existForBase))//Checks if "c" exists in the "existForBase".
+                    return false;
             }
 
+            //לבדוק אם אפשר למחוק
+            //char [] valurChar=arr[0].toCharArray();
+            char base=arr[1].charAt(0);// Assuming that there is only one element in the base
+            //if(isExist(base,valurChar)) // בודק אם קיים הבסיס בערך
+              //  return false;
 
-            char [] valurChar=arr[0].toCharArray();
-            char base=arr[1].charAt(0);// מתוך הנחה שיש בבסיס רק איבר 1 בדקתי את זה
-            if(isExist(base,valurChar)) // בודק אם קיים הבסיס בערך
-                return false;
-
-            int baseIndex=index(base,existForValue);
-            int baseValue;
+            int baseIndex=index(base,existForValue);// Returns the index of the base
+            int valueIndex;
             for(int i=0;i<arr[0].length();i++){
-                baseValue=index(arr[0].charAt(i),existForValue);
-                if(baseValue>baseIndex) //בודק אם יש בערך(מספר) ערך יותר גדול מהבסיס
+                valueIndex=index(arr[0].charAt(i),existForValue);// Returns the index of the value
+                if(valueIndex>=baseIndex) //Checks if a value (arr[0]) has a value greater than or equal to the base
                     return false;
             }
             return ans;
         }
 
-        //מקבלת בסיס והופכת אותו לאות אם הוא גדול מ 9
+
+    /**
+     *
+     * @param a is base in Int
+     * @return A-G if a>9 else return a
+     */
         public static String int2StringBase(int a){
         if(a==10)
             return "A";
@@ -194,13 +209,14 @@ public class Ex1 {
          */
         public static String int2Number(int num, int base) {
             String ans = "";
-            // add your code here
-            if(num<0|| base<2||base>16)
+            if(num<0|| base<2||base>16)// Checks if it is in format
                 return ans;
-           String a= Integer.toString(num, base).toUpperCase() ;//אם זה אות הופך אותה לאות גדולה
 
-           ans=a+"b"+int2StringBase(base);
-            ////////////////////
+            //Converts "num" in base 10 to "base" and if there are letters it converts them to uppercase
+           String a= Integer.toString(num, base).toUpperCase() ;
+
+           ans=a+"b"+int2StringBase(base); //Chain "b" and the base in the desired form
+
             return ans;
         }
 
@@ -218,15 +234,15 @@ public class Ex1 {
         // add your code here
         for(int i=0;i<arr.length;i++){
 
-            if(isNumber(arr[i])){
-                if(ans<number2Int(arr[i])){
-                    ans=number2Int(arr[i]);
-                    index=i;
+            if(isNumber(arr[i])){ //
+                if(ans<number2Int(arr[i])){ // find the maximum in "arr"
+                    ans=number2Int(arr[i]);// Updating the value of the maximum
+                    index=i; //Updating the index of the maximum
                 }
             }
 
         }
-        ////////////////////
+
         return index;
     }
 
@@ -240,7 +256,7 @@ public class Ex1 {
             boolean ans = true;
             int a=number2Int(n1);
             int b=number2Int(n2);
-            if(a==-1 ||b==-1)
+            if(a==-1 ||b==-1)//Checks if the values are in the format
                 ans= false;
 
             else if(a!=b)
